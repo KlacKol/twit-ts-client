@@ -1,0 +1,16 @@
+@import '~antd/dist/antd.css';
+
+.text-area-create-post {
+    border: none;
+    resize: none;
+}
+.text-area-create-post:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.tweet-button {
+    color: white;
+    background: rgb(29, 161, 242);
+    border-radius: 9999px;
+}
