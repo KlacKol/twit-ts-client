@@ -2,12 +2,13 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import {apiLogin, apiRegistration} from "../../services/AuthService";
 import {AUTH_LOGIN_WATCHER, AUTH_REGISTRATION_WATCHER} from "../actionTypes";
 import {authSuccessLogin, authSuccessRegistration} from "./action";
+import {setToken} from "../../services/LocalStorageService";
 
 
 function* loginWorker(action: any) {
-    console.log(action)
-    const data = yield call(apiLogin, action.user_login)
-    yield put(authSuccessLogin(data))
+    const data = yield call(apiLogin, action.user_login);
+    setToken(data.accessToken);
+    yield put(authSuccessLogin(data));
 }
 
 export function* loginWatcher() {

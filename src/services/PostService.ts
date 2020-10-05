@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {PostModel} from "../shared/models";
+import {getToken} from "./LocalStorageService";
 
 
 
@@ -12,3 +13,13 @@ export const twitCreatePost = async (post: PostModel) => {
 export const twitGetPostsUser = async () => {
     return await axios.get(api).then(res => res.data)
 }
+
+axios.interceptors.request.use(
+    (config) => {
+        const token = getToken();
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`
+        }
+        return config;
+    }
+)

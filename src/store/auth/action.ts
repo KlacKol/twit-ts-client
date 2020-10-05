@@ -1,10 +1,11 @@
 import {
     AUTH_LOGIN_SUCCESS,
-    AUTH_LOGIN_WATCHER,
+    AUTH_LOGIN_WATCHER, AUTH_LOGOUT,
     AUTH_REGISTRATION_SUCCESS,
     AUTH_REGISTRATION_WATCHER
 } from "../actionTypes";
 import {AuthModelResponse, LoginModel, RegistrationModel} from "../../shared/models";
+import {clearToken} from "../../services/LocalStorageService";
 
 export  function authLogin(user_login: LoginModel) {
     return {
@@ -31,5 +32,12 @@ export  function authSuccessRegistration(user: AuthModelResponse) {
     return {
         type: AUTH_REGISTRATION_SUCCESS,
         user
+    }
+}
+
+export function logoutUser() {
+    clearToken();
+    return {
+        type: AUTH_LOGOUT
     }
 }

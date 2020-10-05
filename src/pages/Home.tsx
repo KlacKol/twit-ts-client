@@ -15,7 +15,6 @@ const Home = () => {
     }, [])
 
     const data = useSelector((res: RootStateOrAny) => res.twit.posts)
-    console.log(form)
     const post = (data: PostModel) => {
         dispatch(createPost(data))
         form.resetFields();
